@@ -44,8 +44,7 @@ else
 fi
 
 echo "[INFO] Jenkins repo configuration validation : In progress" >> ${LOG}
-ls -l /etc/yum.repos.d/jenkins.repo
-if [ $? -eq 0 ]
+if ls -l /etc/yum.repos.d/jenkins.repo
 then
     echo "[INFO] Jenkins repo configuration : Already done, Nothing to do" >> ${LOG}
 else
