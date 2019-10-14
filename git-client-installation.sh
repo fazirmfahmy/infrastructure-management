@@ -18,7 +18,7 @@ git_command_status ()
 os_not_identified ()
 {
     echo "[INFO] Operating system distribution and version are not supported by this script." >> ${LOG}
-    echo "[INFO] Override the OS detection by setting OS= and DISTRIBUTION= prior to running this script. Example, to force CentOS 6: OS=el DISTRIBUTION=6 ./script.sh" >> ${LOG}
+    echo "[INFO] Override the OS detection by setting OS= and DISTRIBUTION= prior to running this script. Example OS=el DISTRIBUTION=6 ./script.sh" >> ${LOG}
     exit 1
 }
 
@@ -132,9 +132,8 @@ main ()
         then
         echo -n "[ERROR] Unable to download repo config from:" >> ${LOG}
         echo "${yum_repo_config_url}"
-        echo "[ERROR] This usually happens if your operating system is not supported by packagecloud.io, or this script\'s OS detection failed." >> ${LOG}
+        echo "[ERROR] This usually happens if your operating system is not supported, or this script\'s OS detection failed." >> ${LOG}
         echo "[INFO] You can override the OS detection by setting OS= and DISTRIBUTION= prior to running this script. Example, CentOS 6: OS=el DISTRIBUTION=6 ./script.sh ." >> ${LOG}
-        echo "[INFO] If you are running a supported OS, please email support@packagecloud.io and report this." >> ${LOG}
         [ -e $yum_repo_path ] && rm $yum_repo_path
         exit 1
     elif [ "$curl_exit_code" = "35" -o "$curl_exit_code" = "60" ]
@@ -144,7 +143,6 @@ main ()
         echo "[ERROR] Reason could be"
         echo "[ERROR] Missing CA root certificates. Make sure the ca-certificates package is installed." >> ${LOG}
         echo "[ERROR] An old version of libssl. Try upgrading libssl on your system to a more recent version." >> ${LOG}
-        echo "[INFO] Contact support@packagecloud.io with information about your system for help." >> ${LOG}
         [ -e $yum_repo_path ] && rm $yum_repo_path
         exit 1
     elif [ "$curl_exit_code" -gt "0" ]

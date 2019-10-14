@@ -22,21 +22,19 @@ yum install git -y
 echo "[INFO] Git client installation : Completed succusfully"  >> ${LOG}
 
 echo "[INFO] Git client installation validation : In progress" >> ${LOG}
-git --version >> ${LOG}
 
-if [ $? -eq 0 ]
+if git --version
 then
-    echo "[INFO] Git client installation validation : client installed" >> ${LOG}
+    echo "[INFO] Git client installation validation : Client installed" >> ${LOG}
 else
-    echo "[ERROR] Git client installation validation : Client doesnt installed" >> ${LOG}
+    echo "[ERROR] Git client installation validation : Client does not installed" >> ${LOG}
 fi
 
 echo "[INFO] JAVA  installation : In progress" >> ${LOG}
 yum install java-1.8* -y
 echo "[INFO] JAVA installation : Completed succusfully"  >> ${LOG}
 
-java -version
-if [ $? -eq 0 ]
+if java -version
 then
     echo "[INFO] JAVA path configuration : Successful" >> ${LOG}
 else
@@ -55,3 +53,11 @@ else
     echo "[INFO] Jenkins repo configuration file download : Completed succusfully" >> ${LOG}
 fi
 echo "[INFO] Jenkins repo configuration validation : Completed" >> ${LOG}
+
+echo "[INFO] Jenkins installation : In progress" >> ${LOG}
+if yum install jenkins -y
+then
+    echo "[INFO] Jenkins installation  : Completed successfully" >> ${LOG}
+else
+    echo "[INFO] Jenkins installation : Failed" >> ${LOG}
+fi

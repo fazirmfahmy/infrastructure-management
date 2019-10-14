@@ -10,7 +10,7 @@ if ! command -v ansible >/dev/null;
         if yum search ansible
             then
             echo "[INFO] Ansible packages found in enabled repositories." >> ${log}
-            echo "[INFO] "[INFO] Installation in progress." >> ${log}
+            echo "[INFO] Installation in progress." >> ${log}
             yum install -y ansible
         else
             echo "[INFO] Configuration of EPEL repository is required." >> ${log}
@@ -47,7 +47,7 @@ if ! command -v ansible >/dev/null;
         if yum search ansible
             then
             echo "[INFO] Ansible packages found in enabled repositories." >> ${log}
-            echo "[INFO] "[INFO] Installation in progress." >> ${log}
+            echo "[INFO] Installation in progress." >> ${log}
             yum install -y ansible
         else
             echo "[INFO] Configuration of EPEL repository is required." >> ${log}
